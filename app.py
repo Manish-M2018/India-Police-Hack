@@ -28,8 +28,18 @@ def signup():
     if request.method == 'GET':
         return render_template('signup.html')
 
+    with connection.cursor() as cursor:
+
 @app.route("/login",methods=['GET', 'POST'])
 def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    
+    with connection.cursor() as cursor:
+            email = request.form['log_email']
+            psw = request.form['log_psw']
+            phash=hashlib.md5(password.encode())
+            phash=phash.hexdigest()
 
 if __name__=="__main__":
     app.run(debug=True,threaded=False)
