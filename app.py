@@ -17,3 +17,8 @@ connection = pymysql.connect(host='localhost',
 @app.route("/")
 def index():
     return render_template('index.html')
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return render_template("index.html")
