@@ -29,6 +29,7 @@ def signup():
         return render_template('signup.html')
 
     with connection.cursor() as cursor:
+        pass
 
 @app.route("/login",methods=['GET', 'POST'])
 def login():
