@@ -34,8 +34,10 @@ def signup():
     with connection.cursor() as cursor:
         try:
             cursor.execute("insert into users (station_name,email,password) values(%s,%s,%s)",(station_name,email,phash))
-        finally:
             return redirect(url_for("login"))
+        except:
+            flash("Sign Up Unsuccessful!")
+            return redirect(url_for("signup"))
 
 @app.route("/login",methods=['GET', 'POST'])
 def login():
