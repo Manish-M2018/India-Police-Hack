@@ -2,6 +2,12 @@ from flask import Flask,render_template,request,session,redirect,jsonify,url_for
 import pymysql.cursors
 import hashlib
 from werkzeug.utils import secure_filename
+import face_recognition as fr
+import os
+import cv2
+import face_recognition
+import numpy as np
+
 app =Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
