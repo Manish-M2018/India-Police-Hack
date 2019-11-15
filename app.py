@@ -41,6 +41,8 @@ def signup():
 
 @app.route("/login",methods=['GET', 'POST'])
 def login():
+    if 'logged_in' in session:
+        return("hey")
     if request.method == 'GET':
         return render_template('login.html')
     
@@ -54,10 +56,11 @@ def login():
         myresult = cursor.fetchone()
         if(myresult):
             if(phash==myresult['password']):
-                myresult['success']=True
                 #init the session variables
                 session['u_id']=myresult['u_id']
+                session['station_name']=myresult['station_name']
                 session['loggedin']=True
+                return("heyyyy!!!!")
 
 
 if __name__=="__main__":
