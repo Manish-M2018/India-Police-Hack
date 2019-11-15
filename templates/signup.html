@@ -64,17 +64,9 @@
         <div class="login">
             <div class="jumbotron container">
                 <h3 style="margin-top: 2em;">Sign up</h3>
-                <form action = "/register" method = "POST" enctype = "multipart/form-data">
+                <form action = "/register" method = "POST" enctype = "multipart/form-data"> 
                     <div class="form-group">
-                        <label for="role">Role</label>
-                        <select id="role" name="role">
-                            <option value="3">Doctor</option>
-                            <option value="2">Patient</option>
-                            <option value="1">Hospital</option>
-                        </select>
-                    </div>  
-                    <div class="form-group">
-                        <label for="email" onchange="getLocation()">Name</label>
+                        <label for="email">Station name</label>
                         <input type="text" class="form-control" name="name" id="name" placeholder="Name">
                     </div>
                     <div class="form-group">
@@ -90,14 +82,6 @@
                         <label for="password">Confirm password</label>
                         <input type="password" class="form-control" name="conf_psw" id="conf_psw" placeholder="Confirm password">
                         <small id="psw_small" class="form-text text-muted">Never share your password with anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="profile_pic">Profile picture </label>
-                        <input id="file" name="file" type="file" class="btn btn-info" accept="image/*">
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Click on the button to get the geolocation</label>
-                        <button class="btn btn-info" id="location" onclick="getLocation()">Get GeoLocation</button>
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                     {% with messages = get_flashed_messages() %}
