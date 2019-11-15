@@ -27,6 +27,11 @@ def signup():
     if request.method == 'GET':
         return render_template('signup.html')
 
+    password=request.form['sgn_psw']
+    name=request.form['name']
+    email=request.form['sgn_email']
+    phash=hashlib.md5(password.encode())
+    phash=phash.hexdigest()
     with connection.cursor() as cursor:
         try:
             cursor.execute("insert into users (station_name,email,password) values(%s,%s,%s)",(station_name,email,phash))
