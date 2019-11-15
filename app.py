@@ -28,7 +28,8 @@ def signup():
         return render_template('signup.html')
 
     with connection.cursor() as cursor:
-        pass
+        try:
+            cursor.execute("insert into users (station_name,email,password) values(%s,%s,%s)",(station_name,email,phash))
 
 @app.route("/login",methods=['GET', 'POST'])
 def login():
