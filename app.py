@@ -36,11 +36,21 @@ def login():
     if request.method == 'GET':
         return render_template('login.html')
     
+    email = request.form['log_email']
+    password = request.form['log_psw']
+    phash=hashlib.md5(password.encode())
+    phash=phash.hexdigest()
+
     with connection.cursor() as cursor:
-            email = request.form['log_email']
-            psw = request.form['log_psw']
-            phash=hashlib.md5(password.encode())
-            phash=phash.hexdigest()
+        cursor.execute("select * from users where email=%s",email)
+        myresult = cursor.fetchone()
+        if(myresult):
+            if(phash==myresult['password']):
+                myresult['success']=True
+                #init the session variables
+                session['u_id']=myresult['u_id']
+                session['loggedin']=True
+
 
 if __name__=="__main__":
     app.run(debug=True,threaded=False)
