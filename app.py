@@ -8,7 +8,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 connection = pymysql.connect(host='localhost',
                              user='root',
                              password='',
-                             db='pulmacare',
+                             db='policehack',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor,
                              autocommit=True)
