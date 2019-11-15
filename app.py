@@ -41,7 +41,7 @@ def signup():
 
 @app.route("/login",methods=['GET', 'POST'])
 def login():
-    if 'logged_in' in session:
+    if 'loggedin' in session:
         return("hey")
     if request.method == 'GET':
         return render_template('login.html')
