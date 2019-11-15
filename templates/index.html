@@ -1,154 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/index.css') }}" />
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel="stylesheet" />
-    <title>Pulmacare | HOME</title>
-</head>
+{% block title  %}
+Pulmacare | HOME
+{% endblock %}
+{% block body %}
+<center>
+    <!-- Navbar -->
+    <div class="fix">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="" width="105" height="50" class="d-inline-block" alt="Logo">
+                <span class="h2 display-5" style="margin-left: 1em;">Pulmacare</span>
+            </a>
 
-<body>
-    <center>
-        <!-- Navbar -->
-        <div class="fix">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">
-                    <img src="" width="105" height="50" class="d-inline-block" alt="Logo">
-                    <span class="h2 display-5" style="margin-left: 1em;">Pulmacare</span>
-                </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link h5 display-5" href="{{ url_for('index') }}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link h5 display-5" href="{{ url_for('index') }}#howtouse">How To Use</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link h5 display-5" href="#contactus">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('login_page') }}" class="btn btn-outline-primary closer" style="margin-left: 20em;">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('signup_page') }}" class="btn btn-outline-info closer" style="margin-left: 2em;">Sign up</a>
+                    </li>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link h5 display-5" href="{{ url_for('index') }}">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link h5 display-5" href="{{ url_for('index') }}#howtouse">How To Use</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link h5 display-5" href="#contactus">Contact Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="btn btn-outline-primary closer" style="margin-left: 20em;">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="" class="btn btn-outline-info closer" style="margin-left: 2em;">Sign up</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <!-- End of Navbar -->
-
-        <!-- Jumbotron header -->
-        <div class="header">
-            <div class="jumbotron">
-                <!-- <img src="images/nail.jpeg" height="40em" width="40em"> -->
-                <img src="" width="405" height="200" style="float: left;padding: 0;">
-                <br>
-                <p class="h1"><b>Welcome</b></p>
-                <p class="h2"><b>Safety first!!!!</b></p>
-
+                </ul>
             </div>
+        </nav>
+    </div>
+    <!-- End of Navbar -->
+
+    <!-- Jumbotron header -->
+    <div class="header">
+        <div class="jumbotron">
+            <!-- <img src="images/nail.jpeg" height="40em" width="40em"> -->
+            <img src="" width="405" height="200" style="float: left;padding: 0;">
+            <br>
+            <p class="h1"><b>Welcome</b></p>
+            <p class="h2"><b>Safety first!!!!</b></p>
+
         </div>
-        <!-- End of Jumbotron header -->
+    </div>
+    <!-- End of Jumbotron header -->
 
 
-        <!-- How to Use -->
-        <a name="howtouse"></a>
-        <div class="howtouse">
-            <div class="jumbotron">
-                <div class="container">
-                    <h1><u><b>How To Use</b></u></h1>
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <h2 class="display-6">For patients</h2>
-                            <span class="badge badge-danger">Sign up</span><br><br>
-                            <span class="badge badge-warning">Login and view your report to <br>check your health
-                                status</span><br><br>
-                            <span class="badge badge-success">Select a doctor who you would want<br> to consult based on
-                                <br>our recommendations</span>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <h2 class="display-6">For Doctors</h2>
-                            <span class="badge badge-danger">Sign up</span><br><br>
-                            <span class="badge badge-warning">Login and view the list of patients</span><br><br>
-                            <span class="badge badge-success">Select the patient and <br>view his/her information</span>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
-                            <h2 class="display-6">For Hospitals</h2>
-                            <span class="badge badge-danger">Sign up</span><br><br>
-                            <span class="badge badge-warning">Search the database for the <br>patients scanned
-                                X-ray</span><br><br>
-                            <span class="badge badge-success">Login and upload the scanned X-ray <br>of the
-                                patient</span>
-                        </div>
+    <!-- How to Use -->
+    <a name="howtouse"></a>
+    <div class="howtouse">
+        <div class="jumbotron">
+            <div class="container">
+                <h1><u><b>How To Use</b></u></h1>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <h2 class="display-6">For patients</h2>
+                        <span class="badge badge-danger">Sign up</span><br><br>
+                        <span class="badge badge-warning">Login and view your report to <br>check your health
+                            status</span><br><br>
+                        <span class="badge badge-success">Select a doctor who you would want<br> to consult based on
+                            <br>our recommendations</span>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <h2 class="display-6">For Doctors</h2>
+                        <span class="badge badge-danger">Sign up</span><br><br>
+                        <span class="badge badge-warning">Login and view the list of patients</span><br><br>
+                        <span class="badge badge-success">Select the patient and <br>view his/her information</span>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <h2 class="display-6">For Hospitals</h2>
+                        <span class="badge badge-danger">Sign up</span><br><br>
+                        <span class="badge badge-warning">Search the database for the <br>patients scanned
+                            X-ray</span><br><br>
+                        <span class="badge badge-success">Login and upload the scanned X-ray <br>of the
+                            patient</span>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End of How to Use -->
+    </div>
+    <!-- End of How to Use -->
 
-        <!-- Previous sponsors -->
-        <!-- Previous sponsors -->
-        <div class="sponsor">
-            <div class="jumbotron">
-                <h2><b>What our users tell about us</b></h2>
-                <marquee>
-                    <img src="{{ url_for('static',filename='images/p1.jpeg') }}" height="100em" width="150em"
-                        alt="person">
-                    <img src="{{ url_for('static',filename='images/p2.jpg') }}" height="100em" width="150em"
-                        style="margin-left: 3em;" alt="person">
-                    <img src="{{ url_for('static',filename='images/p3.jpg') }}" height="100em" width="150em"
-                        style="margin-left: 3em;" alt="person">
-                    <img src="{{ url_for('static',filename='images/p4.jpg') }}" height="100em" width="150em"
-                        style="margin-left: 3em;" alt="person">
-                    <img src="{{ url_for('static',filename='images/p5.jpg') }}" height="100em" width="150em"
-                        style="margin-left: 3em;" alt="person">
-                </marquee>
-            </div>
+    <!-- Previous sponsors -->
+    <!-- Previous sponsors -->
+    <div class="sponsor">
+        <div class="jumbotron">
+            <h2><b>What our users tell about us</b></h2>
+            <marquee>
+                <img src="{{ url_for('static',filename='images/p1.jpeg') }}" height="100em" width="150em" alt="person">
+                <img src="{{ url_for('static',filename='images/p2.jpg') }}" height="100em" width="150em"
+                    style="margin-left: 3em;" alt="person">
+                <img src="{{ url_for('static',filename='images/p3.jpg') }}" height="100em" width="150em"
+                    style="margin-left: 3em;" alt="person">
+                <img src="{{ url_for('static',filename='images/p4.jpg') }}" height="100em" width="150em"
+                    style="margin-left: 3em;" alt="person">
+                <img src="{{ url_for('static',filename='images/p5.jpg') }}" height="100em" width="150em"
+                    style="margin-left: 3em;" alt="person">
+            </marquee>
         </div>
-        <!-- End of previous sponsors -->
-        <!-- End of previous sponsors -->
+    </div>
+    <!-- End of previous sponsors -->
+    <!-- End of previous sponsors -->
 
 
 
-        <!-- Footer -->
-        <a name="contactus"></a>
-        <div class="footer">
-            <div class="jumbotron">
-                <div class="h5 display-5">
-                    &copy Copyright @ <a href="{{ url_for('index') }}" class="footer-anchor-tag">Pulmacare</a>
-                    <span class="badge badge-warning">Copyright</span>
-                    <!-- <a href="https://www.facebook.com" target="_blank"><img src="static/images/facebook.png" style="z-index: 5;" alt="facebook"></a>
-                    <a href="https://www.linkedin.com" target="_blank"><img src="static/images/linkedin.png" alt="linkedin"></a>
-                    <a href="https://www.youtube.com" target="_blank"><img src="static/images/youtube.png" alt="youtube"></a> -->
-                </div>
-            </div>
-        </div>
-        <!-- End of Footer -->
-    </center>
-</body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-<script src="{{ url_for('static',filename='js/location.js') }}"></script>
+    
+</center>
 
-</html>
+{% endblock %}
