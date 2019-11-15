@@ -23,7 +23,13 @@ def logout():
     session.clear()
     return render_template("index.html")
 
-@app.route("/signup", methods=['GET', 'POST'])
-def sign():
+@app.route("/signup",methods=['GET', 'POST'])
+def signup():
     if request.method == 'GET':
         return render_template('signup.html')
+
+@app.route("/login",methods=['GET', 'POST'])
+def login():
+
+if __name__=="__main__":
+    app.run(debug=True,threaded=False)
