@@ -77,10 +77,10 @@ def dashboard():
 @app.route('/upload',methods=['GET','POST'])
 def upload():
     if request.method == 'POST':
-        file = request.files['file']
-        filename = secure_filename(file.filename)
+        path = request.files['path']
+        filename = secure_filename(path.filename)
         filename='static/missing/'+filename
-        file.save(filename)    
+        path.save(filename)    
         # Taking the data from the form
         arr_id = request.form['arr_id']
         Unit_id = request.form['Unit_id']
@@ -107,13 +107,12 @@ def upload():
         Phisical_Pecularities = request.form['Phisical_Pecularities']
         Phone = request.form['Phone']
         Email = request.form['Email']
-        path = request.form['path']
         crime_no = request.form['crime_no']
 
 
         try:
             with connection.cursor() as cursor:
-                cursor.execute("insert into missing (pic_url) values(%s)",(filename))
+                cursor.execute("insert into missing (arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,path,crime_no) values(%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s)",(arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,path,crime_no))
         except:
 
             print("YAyyyyy")   
