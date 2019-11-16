@@ -26,7 +26,8 @@ connection = pymysql.connect(host='localhost',
 @app.route("/logout")
 def logout():
     session.clear()
-    return render_template("index.html")
+    print('Logout')
+    return render_template('index.html')
 
 @app.route("/signup",methods=['GET', 'POST'])
 def signup():
@@ -46,17 +47,21 @@ def signup():
             return redirect(url_for("signup"))
 
 @app.route("/",methods=['GET', 'POST'])
-def login():
-
+def index():
     if 'loggedin' in session:
-        return("hey")
+        print("hi")
+        return redirect(url_for('index'))
     if request.method == 'GET':
+        print("hiiiii")
         return render_template('index.html')
     
+@app.route('/login',methods=['POST'])
+def login():
     email = request.form['log_email']
     password = request.form['log_psw']
     phash=hashlib.md5(password.encode())
     phash=phash.hexdigest()
+    print("Yyyyyyyyyyyyyyyyyyyyyy")
 
     with connection.cursor() as cursor:
         cursor.execute("select * from users where email=%s",email)
@@ -70,6 +75,10 @@ def login():
                 session['station_name']=myresult['station_name']
                 session['loggedin']=True
                 return redirect(url_for('dashboard'))
+            else:
+                flash("Incorrect login credentials")
+                return redirect(url_for('index'))         
+
 
 @app.route('/dashboard',methods=['GET','POST'])
 def dashboard():
@@ -152,7 +161,8 @@ def upload_found():
             cursor.execute("insert into found (f_url,u_id) values(%s)",(path_name,r_id))      
     except Exception as e:
         print(e)  
-    return redirect(url_for('found'))           
+    return redirect(url_for('found'))    
+
 if __name__ == "__main__":
     app.run(debug=True,threaded=False)
 

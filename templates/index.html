@@ -23,7 +23,7 @@
 					<img src="{{ url_for('static',filename='images/download.png') }}" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action = "/dashboard" method="POST" enctype="multipart/form-data">
+				<form class="login100-form validate-form" action = "/login" method="POST" enctype="multipart/form-data">
 					<span class="login100-form-title">
 					LOGIN
 					</span>
@@ -50,6 +50,13 @@
 						<button type="submit" class="login100-form-btn">
 							Login
 						</button>
+						{% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <h5>{{ message }}</h5>
+                            {% endfor %}
+                        {% endif %}
+                    	{% endwith %}
 					</div>
 
 					<div class="text-center p-t-12">
