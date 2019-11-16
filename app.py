@@ -71,16 +71,21 @@ def login():
 
 @app.route('/dashboard',methods=['GET','POST'])
 def dashboard():
-    if request.method == 'GET' or request.method == 'POST':
-        return render_template('dashboard.html')
-    file = request.files['file']
-    filename = secure_filename(file.filename)
-    filename="static/missing/"+filename
-    file.save(filename)    
-    try:
-        cursor.execute("insert into pics (pic_url) values(%s)",(filename))
-    except:
-        print("YAyyyyy")
+    return render_template('dashboard.html')
+
+@app.route('/upload',methods=['GET','POST'])
+def upload():
+    if request.method == 'POST':
+        file = request.files['file']
+        filename = secure_filename(file.filename)
+        filename='static/'+filename
+        file.save(filename)    
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute("insert into pics (pic_url) values(%s)",(filename))
+        except:
+            print("YAyyyyy")   
+    return redirect(url_for('dashboard'))
 
 if __name__ == "__main__":
     app.run(debug=True,threaded=False)
