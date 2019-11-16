@@ -146,19 +146,13 @@ def upload_found():
         path.save(filename)  
     try:
         with connection.cursor() as cursor:
-            print("Vinodddddddddddddddddddddddddd")
-            sql_req="select u_id from users where u_id="
-            print(sql_req)
-            print(session['u_id'])
-            sql_req=sql_req+str(session['u_id'])
+            sql_req="select u_id from users where u_id="+str(session['u_id'])
+            print(str(session['u_id']))
             cursor.execute(sql_req)
             res = cursor.fetchone()
-            print("res")
-            print(res)
             r_id = res['u_id']
-            print("r_id")
             print(r_id)
-            cursor.execute("insert into found (f_url,u_id) values(%s)",(path_name,r_id))      
+            cursor.execute("insert into found (f_url,u_id) values(%s,%s)",(path_name,r_id))      
     except Exception as e:
         print(e)  
     return redirect(url_for('found'))    
