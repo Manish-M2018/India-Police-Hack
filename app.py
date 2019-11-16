@@ -67,6 +67,11 @@ def login():
                 session['station_name']=myresult['station_name']
                 session['loggedin']=True
                 return("heyyyy!!!!")
+@app.route("/add_missing",methods=['POST'])
+def add missing():
+    file = request.files['file']
+    filename = secure_filename(file.filename)
+    file.save(filename)
 
 
 if __name__=="__main__":
