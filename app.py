@@ -19,9 +19,11 @@ connection = pymysql.connect(host='localhost',
                              cursorclass=pymysql.cursors.DictCursor,
                              autocommit=True)
 
+
 # @app.route("/")
 # def index():
 #     return render_template('index.html')
+
 
 @app.route("/logout")
 def logout():
@@ -40,13 +42,14 @@ def signup():
     with connection.cursor() as cursor:
         try:
             cursor.execute("insert into users (station_name,email,password) values(%s,%s,%s)",(station_name,email,phash))
-            return redirect(url_for("login"))
+            return redirect(url_for("index"))
         except:
             flash("Sign Up Unsuccessful!")
             return redirect(url_for("signup"))
 
 @app.route("/",methods=['GET', 'POST'])
 def login():
+
     if 'loggedin' in session:
         return("hey")
     if request.method == 'GET':
