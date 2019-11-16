@@ -79,12 +79,23 @@ def upload():
     if request.method == 'POST':
         file = request.files['file']
         filename = secure_filename(file.filename)
-        filename='static/'+filename
-
+        filename='static/missing/'+filename
         file.save(filename)    
+        # Taking the data from the form
+        arr_id = request.form['arr_id']
+        Unit_id = request.form['Unit_id']
+        district_Name = request.form['district_Name']
+        Unit_name = request.form['Unit_name']
+        FIRNo = request.form['FIRNo']
+        FIR_Date = request.form['FIR_Date']
+        Complainant_Name = request.form['Complainant_Name']
+        Complainant_Relation = request.form['Complainant_Relation']
+        Date_Of_Missing = request.form['Date_Of_Missing']
+
+
         try:
             with connection.cursor() as cursor:
-                cursor.execute("insert into pics (pic_url) values(%s)",(filename))
+                cursor.execute("insert into missing (pic_url) values(%s)",(filename))
         except:
 
             print("YAyyyyy")   
