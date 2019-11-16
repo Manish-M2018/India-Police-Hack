@@ -7,6 +7,7 @@ import os
 import cv2
 import face_recognition
 import numpy as np
+from werkzeug.utils import secure_filename
 
 app =Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -20,9 +21,6 @@ connection = pymysql.connect(host='localhost',
                              autocommit=True)
 
 
-# @app.route("/")
-# def index():
-#     return render_template('index.html')
 
 
 @app.route("/logout")
@@ -69,8 +67,22 @@ def login():
                 session['u_id']=myresult['u_id']
                 session['station_name']=myresult['station_name']
                 session['loggedin']=True
-                return("heyyyy!!!!")
+                return redirect(url_for('dashboard'))
 
+@app.route('/dashboard',methods=['GET','POST'])
+def dashboard():
+    if request.method == 'GET' or request.method == 'POST':
+        return render_template('dashboard.html')
+    file = request.files['file']
+    filename = secure_filename(file.filename)
+    filename="static/missing/"+filename
+    file.save(filename)    
+    try:
+        cursor.execute("insert into pics (pic_url) values(%s)",(filename))
+    except:
+        print("YAyyyyy")
 
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run(debug=True,threaded=False)
+
+    
