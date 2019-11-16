@@ -77,6 +77,7 @@ def dashboard():
 @app.route('/upload',methods=['GET','POST'])
 def upload():
     if request.method == 'POST':
+        found= 0
         path = request.files['path']
         filename = secure_filename(path.filename)
         filename='static/missing/'+filename
@@ -99,7 +100,7 @@ def upload():
         Build = request.form['Build']
         Complextion = request.form['Complextion']
         Face = request.form['Face']
-        colour = request.form['colour']
+        Colour = request.form['Colour']
         Hair = request.form['Hair']
         Language_sp = request.form['Language_sp']
         Dress_Description = request.form['Dress_Description']
@@ -112,10 +113,10 @@ def upload():
 
         try:
             with connection.cursor() as cursor:
-                cursor.execute("insert into missing (arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,path,crime_no) values(%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s%s)",(arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,path,crime_no))
-        except:
-
-            print("YAyyyyy")   
+                cursor.execute("insert into missing (arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,Colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,path,crime_no,found) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,Colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,filename,crime_no,found))
+        except Exception as e:
+            print(e)   
+            print("Noooooooooooooooooooooooooooo")
     return redirect(url_for('dashboard'))
 
 

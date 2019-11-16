@@ -31,9 +31,8 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                  
-                        <li class="nav-item">
-                            <a href="{{ url_for('logout') }}" class="btn btn-outline-primary closer"
-                                style="margin-left: 20em;">Logout</a>
+                        <li class="nav-item ml-50">
+                            <a href="{{ url_for('logout') }}" class="btn btn-outline-primary closer">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -63,11 +62,11 @@
 
                     <div class="form-group">
                         <label for="text">arr_id</label>
-                        <input id="arr_id" name="arr_id" placeholder="arr_id">
+                        <input id="arr_id" type="number" name="arr_id" placeholder="arr_id">
                     </div>
                     <div class="form-group">
                         <label for="text">Unit_id</label>
-                        <input id="Unit_id" name="Unit_id" placeholder="Unit_id">
+                        <input id="Unit_id" type="number" name="Unit_id" placeholder="Unit_id">
                     </div>
                     <div class="form-group">
                         <label for="text">District Name</label>
@@ -87,11 +86,11 @@
                     </div>
                     <div class="form-group">
                         <label for="text">Complaint Name</label>
-                        <input id="Complaint_Name" name="Complaint_Name" placeholder="Complaint_Name">
+                        <input id="Complainant_Name" name="Complainant_Name" placeholder="Complainant_Name">
                     </div>
                     <div class="form-group">
                         <label for="text">Complaint Relation</label>
-                        <input id="Complaint_Relation" name="Complaint_Relation" placeholder="Complaint_Relation">
+                        <input id="Complainant_Relation" name="Complainant_Relation" placeholder="Complainant_Relation">
                     </div>
                     <div class="form-group">
                         <label for="text">Date Of Missing</label>
@@ -111,11 +110,11 @@
                     </div>
                     <div class="form-group">
                         <label for="text">Age</label>
-                        <input id="Age" name="Age" placeholder="Age">
+                        <input id="Age" type="number" name="Age" placeholder="Age">
                     </div>
                     <div class="form-group">
                         <label for="text">Height</label>
-                        <input id="Height" name="Height" placeholder="Height">
+                        <input id="Height" type="number" name="Height" placeholder="Height">
                     </div>
                     <div class="form-group">
                         <label for="text">Build</label>
@@ -176,7 +175,7 @@
 
                     <div class="form-group">
                         <label for="crime_no">Crime No.</label>
-                        <input id="crime_no" name="crime_no" placeholder="crime_no">
+                        <input id="crime_no" type="number"a name="crime_no" placeholder="crime_no">
                     </div>
 
                     <button type="submit" class="btn btn-success">Submit</button>
