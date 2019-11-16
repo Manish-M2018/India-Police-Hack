@@ -49,8 +49,7 @@ def signup():
 @app.route("/",methods=['GET', 'POST'])
 def index():
     if 'loggedin' in session:
-        print("hi")
-        return redirect(url_for('index'))
+        return render_template('index.html')
     if request.method == 'GET':
         print("hiiiii")
         return render_template('index.html')
