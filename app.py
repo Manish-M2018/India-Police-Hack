@@ -61,9 +61,11 @@ def login():
     with connection.cursor() as cursor:
         cursor.execute("select * from users where email=%s",email)
         myresult = cursor.fetchone()
+        print(myresult)
         if(myresult):
             if(phash==myresult['password']):
                 #init the session variables
+                print(myresult)
                 session['u_id']=myresult['u_id']
                 session['station_name']=myresult['station_name']
                 session['loggedin']=True
@@ -80,6 +82,7 @@ def upload():
         found= 0
         path = request.files['path']
         filename = secure_filename(path.filename)
+        path_name = filename
         filename='static/missing/'+filename
         path.save(filename)    
         # Taking the data from the form
@@ -113,13 +116,43 @@ def upload():
 
         try:
             with connection.cursor() as cursor:
-                cursor.execute("insert into missing (arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,Colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,path,crime_no,found) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,Colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,filename,crime_no,found))
+                cursor.execute("insert into missing (arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,Colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,path,crime_no,found) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(arr_id,Unit_id,district_Name,Unit_name,FIRNo,FIR_Date,Complainant_Name,Complainant_Relation,Date_Of_Missing,Person_Name,Perm_Address1,Sex,Age,Height,Build,Complextion,Face,Colour,Hair,Language_sp,Dress_Description,ID_Marks,Phisical_Pecularities,Phone,Email,path_name,crime_no,found))
         except Exception as e:
             print(e)   
             print("Noooooooooooooooooooooooooooo")
     return redirect(url_for('dashboard'))
 
 
+@app.route('/found',methods=['GET','POST'])
+def found():
+    return render_template('found.html')
+
+@app.route('/upload_found',methods=['GET','POST'])
+def upload_found():
+    if request.method == 'POST': 
+        path = request.files['path']
+        filename = secure_filename(path.filename)
+        path_name = filename
+        filename='static/found/'+filename
+        path.save(filename)  
+    try:
+        with connection.cursor() as cursor:
+            print("Vinodddddddddddddddddddddddddd")
+            sql_req="select u_id from users where u_id="
+            print(sql_req)
+            print(session['u_id'])
+            sql_req=sql_req+str(session['u_id'])
+            cursor.execute(sql_req)
+            res = cursor.fetchone()
+            print("res")
+            print(res)
+            r_id = res['u_id']
+            print("r_id")
+            print(r_id)
+            cursor.execute("insert into found (f_url,u_id) values(%s)",(path_name,r_id))      
+    except Exception as e:
+        print(e)  
+    return redirect(url_for('found'))           
 if __name__ == "__main__":
     app.run(debug=True,threaded=False)
 
